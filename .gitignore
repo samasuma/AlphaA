@@ -1,12 +1,5 @@
-#config
-.yml
-<<<<<<< HEAD
-.yaml
-
-#mac 
-.DS_Store
-=======
->>>>>>> 396663e0f1f6f405d9e9f4fe789e89c8cf281f82
+# Ignore config.yml
+config.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
