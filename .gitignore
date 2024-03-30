@@ -1,6 +1,12 @@
 # Ignore config.yml
 config.yml
 
+#work in progress
+transactions_pnl.py
+
+#mac binary file
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
