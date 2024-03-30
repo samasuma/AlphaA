@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 
+=======
+>>>>>>> 396663e0f1f6f405d9e9f4fe789e89c8cf281f82
 import requests
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from telegram import Update
@@ -35,16 +38,25 @@ def get_rari_data():
     return current_price, total_volume_24h, market_cap
 
 def check_price_condition():
+<<<<<<< HEAD
     global buy_price, last_alert_price_increase  # Include both global variables
     last_alert_price_increase = buy_price  # Initialize or reset at the start
     
     while True:
         current_price, _, _ = get_rari_data()  # Assuming get_rari_data() returns a tuple of three values
+=======
+    global buy_price  # Reference the global buy price to update it
+    last_alert_price_increase = buy_price  # Initial value set to buy price
+    while True:
+        
+        current_price = current_price = get_rari_data()[0]
+>>>>>>> 396663e0f1f6f405d9e9f4fe789e89c8cf281f82
         decrease_alert_price = buy_price * decrease_threshold  # Calculate the price for a decrease alert
         increase_alert_price = last_alert_price_increase * increase_threshold  # Calculate the price for an increase alert
 
         # Check for a decrease in price
         if current_price <= decrease_alert_price:
+<<<<<<< HEAD
             message = f"🚨 RARI has decreased more than 6% from your buy price. Consider selling or setting a stop loss. Current price: ${current_price}"
             send_alert(message)
             # Reset decrease alert price based on buy price (or current_price, depending on strategy)
@@ -52,17 +64,32 @@ def check_price_condition():
 
         # Check for an increase in price
         elif current_price >= increase_alert_price:
+=======
+            message = f"⚠️ RARI has decreased more than 6% from your buy price. Consider selling or setting a stop loss. Current price: ${current_price}"
+            send_alert(message)
+            # Update decrease alert price based on current price
+            decrease_alert_price = current_price * decrease_threshold
+
+        # Check for an increase in price
+        if current_price >= increase_alert_price:
+>>>>>>> 396663e0f1f6f405d9e9f4fe789e89c8cf281f82
             message = f"💹 RARI has increased more than 7% from the last alert price. Consider taking profits or adjusting your strategy. Current price: ${current_price}"
             send_alert(message)
             # Update last alert price for increases
             last_alert_price_increase = current_price
+<<<<<<< HEAD
             # Recalculate increase_alert_price for the next iteration
             increase_alert_price = last_alert_price_increase * increase_threshold
+=======
+>>>>>>> 396663e0f1f6f405d9e9f4fe789e89c8cf281f82
 
         time.sleep(300)  # Check every 5 minutes
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 396663e0f1f6f405d9e9f4fe789e89c8cf281f82
 def send_alert(message):
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={chat_id}&text={message}"
     requests.get(url)
